@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 # Make display smaller
-def data_loader():
+def dataloader():
     pd.options.display.max_rows = 10
     unames = ['user_id', 'gender', 'age', 'occupation', 'zip']
     users = pd.read_csv('ml-1m/users.dat', sep='::',
