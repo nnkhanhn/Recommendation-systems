@@ -6,6 +6,7 @@ from sklearn.linear_model import Ridge
 import pickle
 from sklearn.metrics import mean_squared_error
 import pandas as pd
+import csv
 
 users,ratings,movies = dataloader()
 train_ratings, validation_ratings = train_test_split(
@@ -79,7 +80,15 @@ def eval_rmse(ratings: pd.DataFrame) -> float:
     
 # print(f"RMSE train: {eval_rmse(train_ratings)}")
 # print(f"RMSE validation: {eval_rmse(validation_ratings)}")
+k = []
 user_id = 160
-for genre, coef in zip(genres, user_model_dict[user_id].coef_):
-    print("{:15s}: {:.3f}".format(genre, coef))
-print(predict(1, 1193))
+for i in users["user_id"].unique():
+    x = []
+    for genre, coef in zip(genres, user_model_dict[i].coef_):
+        x.append(coef)
+    k.append(x)
+print(k[160])
+p = pd.DataFrame(columns=genres, data=k, index=users["user_id"] )
+p.to_csv(r'u_dict.csv',index= True)
+
+# print(predict(1, 1193))
