@@ -1,1 +1,1 @@
- a hybrid system solves movielens_1m dataset problem
+ Neural_RS thesis Nguyen Ngoc Khanh
